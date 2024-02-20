@@ -13,7 +13,6 @@ processor_manager = ipb.ImageProcessorManager(params=parameters, layer_thickness
 
 # Process images and save processed segments
 processor_manager.process_images()
-processor_manager.calculate_effective_Kz()
 processor_manager.save_percentages_to_dataframe()
 
 

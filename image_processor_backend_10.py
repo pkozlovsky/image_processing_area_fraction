@@ -5,7 +5,6 @@ import matplotlib.pyplot as plt
 from scipy.ndimage import binary_dilation
 import pandas as pd
 import os
-from PIL import Image, ImageOps
 import csv
 
 
@@ -244,32 +243,32 @@ class ImageProcessorManager:
     def calculate_effective_Kz(self):
         # Initialize a dictionary to store the sum of layer_thickness/Kxy for each segment
         effective_Kz_data = {}
-    
+
         # Iterate through each row in the dataframe to calculate 1/K_effective_z
         for index, row in self.df.iterrows():
             segment_number = row['segment_number']
             layer_thickness = row['layer_thickness_um']
             # Correctly use Kxy from the row
             Kxy = row['Kxy']
-    
+
             # Calculate layer_thickness / Kxy and accumulate it for each segment
             if segment_number not in effective_Kz_data:
                 effective_Kz_data[segment_number] = 0
             effective_Kz_data[segment_number] += layer_thickness / Kxy
-    
+
         # Calculate K_effective_z (which is 1 / sum(layer_thickness / Kxy) for each segment)
         for segment_number in effective_Kz_data:
             effective_Kz_data[segment_number] = 1 / effective_Kz_data[segment_number]
-    
+
         # Add K_effective_z data to the dataframe
         self.df['K_effective_z'] = self.df['segment_number'].apply(lambda x: effective_Kz_data.get(x, 0))
-    
+
         print("K_effective_z calculation completed.")
 
 
     def save_percentages_to_dataframe(self):
         # Define the path for the output CSV file
-        csv_file_path = os.path.join(self.output_dir, 'segment_details.csv')
+        csv_file_path = os.path.join(self.output_dir, 'results.csv')
         
         # Check if the DataFrame is not empty
         if not self.df.empty:
