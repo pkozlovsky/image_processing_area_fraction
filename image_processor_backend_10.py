@@ -278,6 +278,40 @@ class ImageProcessorManager:
         else:
             print("DataFrame is empty. No data to save.")
 
+    def print_aggregated_segment_summary(self):
+        print("Aggregated Segment Summary: Effective Kxy and Kz")
+        print("-----------------------------------------------------")
+        print("{:<15} {:<20} {:<20}".format('Segment Number', 'Avg Kxy_effective', 'Avg K_effective_z'))
+        print("-----------------------------------------------------")
+    
+        # Assuming 'Kxy_effective' exists, replace with 'Kxy' if necessary
+        aggregated = self.df.groupby('segment_number').agg({
+            'Kxy': 'mean',  # Change 'Kxy' to 'Kxy_effective' if your DataFrame has this column
+            'K_effective_z': 'mean'
+        }).reset_index()
+    
+        for index, row in aggregated.iterrows():
+            segment_number = row['segment_number']
+            avg_Kxy_effective = row['Kxy']  # Change 'Kxy' to 'Kxy_effective' if applicable
+            avg_K_effective_z = row['K_effective_z']
+            
+            print("{:<15} {:<20.2f} {:<20.2f}".format(segment_number, avg_Kxy_effective, avg_K_effective_z))
+    #def print_direct_segment_summary(self):
+    #    print("Segment Summary: Direct Effective Kxy and Kz")
+    #    print("-----------------------------------------------------")
+    #    print("{:<15} {:<20} {:<20}".format('Segment Number', 'Kxy_effective', 'K_effective_z'))
+    #    print("-----------------------------------------------------")
+    #
+    #    # Directly print without aggregating if each segment has a single, correct value
+    #    for index, row in self.df.drop_duplicates(subset='segment_number').iterrows():
+    #        segment_number = row['segment_number']
+    #        Kxy_effective = row['Kxy']  # Assuming this is the correct column; adjust as necessary
+    #        K_effective_z = row['K_effective_z']
+    #        
+    #        print("{:<15} {:<20.2f} {:<20.2f}".format(segment_number, Kxy_effective, K_effective_z))
+
+
+
 
 class ThicknessReader:
     def __init__(self, filepath):
