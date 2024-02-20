@@ -21,5 +21,3 @@ processor_manager.process_images()
 
 # Save the black area percentages to a CSV file
 processor_manager.save_percentages_to_csv()
-
-# Note: The steps for splitting the image, calculating total area, and processing each segment are now handled within the ImageProcessorManager class.

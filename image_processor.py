@@ -22,3 +22,4 @@ for i, segment in enumerate(splitter.segments):
 
     # If you want to display the processed segments, uncomment the following line
     processor.display_images()
+dis

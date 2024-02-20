@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 from scipy.ndimage import binary_dilation
 
 class ImageProcessor:
-    def __init__(self, image, threshold=200, dilatation_element_size=4, dilate=False, area_correction_factor=0.9):
+    def __init__(self, image, threshold=200, dilatation_element_size=4, dilate=False, area_correction_factor=0.7):
         self.image = image
         self.threshold = threshold
         self.dilatation_element_size = dilatation_element_size
@@ -33,6 +33,8 @@ class ImageProcessor:
         black_pixels = np.sum(image_to_use == 0)
         total_pixels = image_to_use.size
         self.black_area_percentage = (black_pixels / total_pixels) * 100
+
+           
     def calculate_black_area_percentage(self):
         # Ensure image_to_use is a numpy array for analysis
         image_to_use = np.array(self.image_dilated) if self.dilate else np.array(self.image_thresholded)
@@ -172,8 +174,7 @@ class ImageProcessorManager:
 
                     output_filename = f'processed_segment_{i+1}_{filename}'
                     processor.image_dilated.save(os.path.join(self.output_dir, output_filename))
-
-    # Note: The save_percentages_to_csv method is not yet implemented                
+    # Save the black area percentages to a CSV file
     def save_percentages_to_csv(self):
         csv_file_path = os.path.join(self.output_dir, 'black_area_percentages.csv')
         with open(csv_file_path, 'w', newline='') as csvfile:
