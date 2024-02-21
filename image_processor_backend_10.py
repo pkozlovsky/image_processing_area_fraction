@@ -281,18 +281,18 @@ class ImageProcessorManager:
     def print_aggregated_segment_summary(self):
         print("Aggregated Segment Summary: Effective Kxy and Kz")
         print("-----------------------------------------------------")
-        print("{:<15} {:<20} {:<20}".format('Segment Number', 'Avg Kxy_effective', 'Avg K_effective_z'))
+        print("{:<15} {:<20} {:<20}".format('Segment Number', 'Kxy_effective', 'Kz_effective'))
         print("-----------------------------------------------------")
     
         # Assuming 'Kxy_effective' exists, replace with 'Kxy' if necessary
         aggregated = self.df.groupby('segment_number').agg({
-            'Kxy': 'mean',  # Change 'Kxy' to 'Kxy_effective' if your DataFrame has this column
+            'effective_Kxy': 'mean',  # Change 'Kxy' to 'Kxy_effective' if your DataFrame has this column
             'K_effective_z': 'mean'
         }).reset_index()
     
         for index, row in aggregated.iterrows():
             segment_number = row['segment_number']
-            avg_Kxy_effective = row['Kxy']  # Change 'Kxy' to 'Kxy_effective' if applicable
+            avg_Kxy_effective = row['effective_Kxy']  # Change 'Kxy' to 'Kxy_effective' if applicable
             avg_K_effective_z = row['K_effective_z']
             
             print("{:<15} {:<20.2f} {:<20.2f}".format(segment_number, avg_Kxy_effective, avg_K_effective_z))

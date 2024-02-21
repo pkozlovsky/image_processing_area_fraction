@@ -1,2 +1,2 @@
 input_dir,output_dir,rows,cols,image_width_um,image_height_um,K_copper,K_dielectric 
-c:\\Users\\pik1\\001_PROJECTS\\029_TMA76_Heat_transfer_nRF54H20_Lilium\\004_analyses\\area_fraction\\LiliumFP1_layer_snaps\\cropped,c:\\Users\\pik1\\001_PROJECTS\\029_TMA76_Heat_transfer_nRF54H20_Lilium\\004_analyses\\area_fraction\\LiliumFP1_layer_snaps\\segmented,3,3,4630.25,4230.25,400,1.5
+c:\\Users\\pik1\\001_PROJECTS\\029_TMA76_Heat_transfer_nRF54H20_Lilium\\004_analyses\\area_fraction\\LiliumFP1_layer_snaps\\cropped,c:\\Users\\pik1\\001_PROJECTS\\029_TMA76_Heat_transfer_nRF54H20_Lilium\\004_analyses\\area_fraction\\LiliumFP1_layer_snaps\\segmented,4,4,4630.25,4230.25,400,1.5
