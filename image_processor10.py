@@ -15,7 +15,6 @@ processor_manager = ipb.ImageProcessorManager(params=parameters, layer_thickness
 processor_manager.process_images()
 processor_manager.save_percentages_to_dataframe()
 processor_manager.print_aggregated_segment_summary()
-#processor_manager.print_direct_segment_summary()
 
 
 
